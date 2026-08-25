@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      # Defer major bumps of the runtime deps (livekit-agents, livekit, openai)
+      # to a human — a major of livekit-agents can break the plugin's LLM
+      # surface. Patch/minor (incl. security fixes within a major) still flow.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

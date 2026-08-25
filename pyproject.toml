@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+# Distribution name is intentionally suffixed `-v1` to keep a distinct PyPI
+# project from upstream's `livekit-plugins-floe`, so the two can ship dual-track
+# if livekit/agents#6890 merges. The import namespace stays `livekit.plugins.floe`.
+name = "livekit-plugins-floe-v1"
+dynamic = ["version"]
+description = "Floe metered-inference + budget-guard plugin for LiveKit Agents"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10.0"
+authors = [
+    { name = "LiveKit", email = "hello@livekit.io" },
+    { name = "Floe Labs", email = "hello@floelabs.xyz" },
+]
+keywords = ["ai", "livekit", "floe", "budget", "metering", "cost"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "livekit-agents[openai]>=1.6.10",
+    "floe-guard>=0.19",
+    "aiohttp",
+    "livekit",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-asyncio>=0.23", "ruff>=0.4"]
+
+[project.urls]
+Homepage = "https://floelabs.xyz"
+Source = "https://github.com/Floe-Labs/livekit-plugins-floe"
+Documentation = "https://floe-labs.gitbook.io/docs"
+
+[tool.hatch.version]
+path = "livekit/plugins/floe/version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["livekit"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/livekit"]
+
+[tool.uv]
+exclude-newer = "7 days"
+exclude-newer-package = { livekit = "0 days", livekit-agents = "0 days" }
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+asyncio_mode = "auto"
+markers = ["unit: unit tests"]
