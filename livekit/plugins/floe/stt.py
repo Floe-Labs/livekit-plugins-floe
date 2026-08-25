@@ -334,7 +334,14 @@ class SpeechStream(stt.SpeechStream):
             try:
                 data = json.loads(msg.data)
             except json.JSONDecodeError:
-                logger.warning("floe STT: non-JSON message: %s", msg.data)
+                # Content-free body (REVIEW.md): a non-JSON transcript frame may
+                # carry speech text, so the raw payload rides a pii-tagged
+                # structured attribute the collector can redact.
+                logger.warning(
+                    "floe STT: ignoring non-JSON message (%d chars)",
+                    len(msg.data),
+                    extra={"lk.pii.stt_message": msg.data},
+                )
                 continue
 
             mtype = data.get("type")
