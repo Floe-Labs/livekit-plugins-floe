@@ -1,7 +1,7 @@
 # Contributing to livekit-plugins-floe
 
 This is the Floe plugin for [LiveKit Agents](https://github.com/livekit/agents):
-it routes LiveKit's `LLM` through [Floe](https://floelabs.xyz/) for metered,
+it routes LiveKit's `LLM` through [Floe](https://floefinance.com/) for metered,
 budget-guarded inference, plus a usage reconciler and per-turn cost receipts.
 
 The code is derived from the LiveKit Agents plugin layout and is licensed
