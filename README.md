@@ -1,9 +1,9 @@
 # Floe plugin for LiveKit Agents
 
-Route LiveKit's `LLM`, `STT`, and `TTS` through [Floe](https://floefinance.com/)
-so the whole voice pipeline is metered against one spend budget. Drop-in
-OpenAI-compatible `LLM` and `TTS`, a streaming `STT`, plus a usage reconciler
-that checks LiveKit-reported token usage against Floe pricing.
+Meter every leg of a LiveKit voice agent — `LLM`, `STT`, and `TTS` — per call on one
+[Floe](https://floefinance.com/) ledger, so you see what each call really costs (and
+can cap it). Drop-in OpenAI-compatible `LLM` and `TTS`, a streaming `STT`, plus a
+usage reconciler that checks LiveKit-reported token usage against Floe pricing.
 
 Two ways to connect:
 
