@@ -1,3 +1,7 @@
+> [!NOTE]
+> **Maintenance mode.** This plugin is in maintenance mode: no new features are planned and there is no roadmap.
+> It is published on PyPI as [`livekit-plugins-floe-v1`](https://pypi.org/project/livekit-plugins-floe-v1/). Releases are cut manually, so PyPI can lag `main`.
+
 # Floe plugin for LiveKit Agents
 
 Meter every leg of a LiveKit voice agent — `LLM`, `STT`, and `TTS` — per call on one
